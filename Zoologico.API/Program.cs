@@ -39,11 +39,17 @@ namespace Zoologico.API
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+           // if (app.Environment.IsDevelopment())
+           // {
                 app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            //  app.UseSwaggerUI();
+            app.UseSwaggerUI(c =>
+            {
+                // Si tienes una ruta específica, asegúrate de que sea accesible
+                // Si está vacío, usa la ruta por defecto: /swagger/v1/swagger.json
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tu API v1");
+            });
+            // }
 
             app.UseHttpsRedirection();
 
